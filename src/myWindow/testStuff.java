@@ -1,8 +1,5 @@
 package myWindow;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
-
 public class testStuff {
 
 	public static void main (String[] args) {
@@ -10,6 +7,7 @@ public class testStuff {
 		String result;
 		int a = 1000000;
 		int b = 2;
+		@SuppressWarnings("unused")
 		int c = Integer.MAX_VALUE;
 		int d;
 		
