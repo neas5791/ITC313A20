@@ -1,7 +1,68 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * 
+ * @subject		ITC313
+ * @author 		Sean Matkovich
+ * @studentID	11187033
+ * 
+ * This class implement task two on the assignment as detailed below
+ * 
+ * My implementation use a model-view-controller pattern which reduce 
+ * dependency between User interface and the model 
+ *  
+ *  
+ *  Task 2 (40 marks) (a square inherits a rectangle)
+ *  Assume a rectangle as depicted in the diagram bellow. Notice its specifications.
+ *	
+ *	=================  
+ *  |	RECTANGLE	|
+ *  |===============|
+ *  |	base:int	|
+ *  |---------------|
+ *  |	height:int	|
+ *  |+++++++++++++++|
+ *  |	area:int	|
+ *  +++++++++++++++++
+ *  
+ *  The diagram shows a class Rectangle. An object of this class represents a shape which has 
+ *  two sides (base and height). These two sides should be kept in private to avoid misuse and 
+ *  set to zero when a rectangle object is first created. There should be a function to set the value 
+ *  of these two sides. Another function should calculate the area (base * height) of the rectangle.
+ *  
+Part 1 (rectangle):
+Write a JAVA source code, to declare the Rectangle class considering above mentioned specifications.
+Write, in JAVA, the complete definition of the Rectangle class based on your declaration
+Write a fragment of client code which creates a Rectangle object, sets its base and height value to 8 and 6 respectively and displays its area.
+Part 2 (square):
+Assume a Square class which would inherit the Rectangle defined in Part 1. An object of Square class will have both sides equal (i.e. base=height) which are set to zero at the time of the creation of the object. The same functions (area and setValues) of the Rectangle class should be used in Square class too.
+Write a JAVA source code declaration of the Square class inheriting the Rectangle class to behave according to the specification given above.
+Write a fragment of client code which creates a Square object, sets its side to 8 and displays its area.
+
+
+
+ * Task 1 (60 marks) (plotting some POIs on a graph/map)
+ * 
+ * Part 1: 
+ * Several types of point of interests (POI) such as - 
+ * 		(1) Petrol station
+ * 		(2) Taxi Stand
+ * 		(3) ATM
+ * 		(4) Hospital
+ * 		(5) Shopping centre
+ * are located in a city. Their locations (longitude and latitude) 
+ * are provided in a text file (a file will be provided in the 
+ * resource (a copy of this file is located in the root directory of this
+ * project) section of the subject site, or you can create your own 
+ * dummy text file according to the format you prefer). You must 
+ * work with at least two type/kind of POI and at least 20 samples for 
+ * each type (e.g. your text file should contain the location of 20 petrol 
+ * stations in a city). You have to write a JAVA program that would get 
+ * the locations of all the POIs from the file and plot them on a map (graph). 
+ * Optional: Save the map/graph in a file if the user wants to.
+ * 
+ * Part 2: 
+ * incorporate a mechanism to zoom in/out the map either by having 
+ * buttons or with the help of the scroll button.
+ *
  */
 
 package ITC313A2T2;
