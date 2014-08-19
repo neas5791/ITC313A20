@@ -109,7 +109,7 @@ public class Controller {
         
         this.theView.addCalculateListener(new CalculateListener());
         this.theView.addRadioListener(new RadioListener());
-        this.theView.addFocusListener(new TextListener());
+        this.theView.addTextFocusListener(new TextListener());
     }
     
     /**

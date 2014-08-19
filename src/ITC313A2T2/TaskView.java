@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ITC313A2T2;
 
 import java.awt.*;
@@ -14,14 +8,9 @@ import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
-
-/**
- *
- * @author Seaboard
- */
 @SuppressWarnings("serial")
 public class TaskView extends JFrame{
-
+	/* GUI Controls */
     private JTextField baseTxt;
     private JTextField heightTxt;
     private JTextField areaTxt;
@@ -31,11 +20,19 @@ public class TaskView extends JFrame{
     private JRadioButton squareRadio;
     
     
+    /**
+     * Default constructor sets up and creates JFrame 
+     */
     public TaskView(){
         initComponents();
+        
+        // after frame has been set up the object is made visible
         this.setVisible(true);
     }
     
+    /**
+     * Initializes swing components and set's frame layout
+     */
     private void initComponents(){
 
     	JLabel baseLbl;
@@ -87,13 +84,16 @@ public class TaskView extends JFrame{
         
         this.add(taskPanel);
         
-//        pack();
         setTitle("ITC313 Assignment Two");
         setSize(275,300);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+    
+/*  *****************************************************************  */
+    
+    // Nothing to fancy here just plain old getters :)    
     
     public int getBaseValue(){
         return Integer.parseInt(baseTxt.getText());
@@ -102,6 +102,10 @@ public class TaskView extends JFrame{
     public int getHeightValue(){
         return Integer.parseInt(heightTxt.getText());
     }
+    
+/*  *****************************************************************  */
+    
+    // Nothing to fancy here just plain old setters :)
     
     public void setArea(int solution){
         areaTxt.setText(String.format("%,d", solution));
@@ -114,24 +118,6 @@ public class TaskView extends JFrame{
     public void setHeight(int height){
         heightTxt.setText(Integer.toString(height));
 //    	heightTxt.setText(height);
-    }
-
-    public void addCalculateListener(ActionListener listenForCalcButton){
-        calculateButton.addActionListener(listenForCalcButton);
-    }
-    
-    public void addRadioListener(ItemListener listenForRadio) {
-        rectangleRadio.addItemListener(listenForRadio);
-        squareRadio.addItemListener(listenForRadio);
-    }
-    
-    public void addFocusListener(FocusListener listenForText){
-        baseTxt.addFocusListener(listenForText);
-        heightTxt.addFocusListener(listenForText);
-    }
-    
-    public void displayErrorMessage(String errorMessage){
-        JOptionPane.showMessageDialog(this, errorMessage);
     }
 
     public void setShape(ItemEvent e) {
@@ -147,19 +133,61 @@ public class TaskView extends JFrame{
             heightTxt.setFocusable(true);
         }
     }
-
-    public JTextField getBaseTxtField() {  
-    	return this.baseTxt;  
+/*  *****************************************************************  */
+    
+    /**
+     * adds the ActionListener to the calculate button
+     * @param listenForCalcButton	the ActionListener class that will listen for button click events
+     */
+    public void addCalculateListener(ActionListener listenForCalcButton){
+        calculateButton.addActionListener(listenForCalcButton);
+    }
+    
+    /**
+     * adds the ActionListener to the radio buttons
+     * @param listenForRadio	the ActionListener class that will listen for button click events
+     */
+    public void addRadioListener(ItemListener listenForRadio) {
+        rectangleRadio.addItemListener(listenForRadio);
+        squareRadio.addItemListener(listenForRadio);
+    }
+    
+    /**
+     * adds the ActionListener to the JTextField's focus events
+     * @param listenForText 	the ActionListener class that will listen for button click events
+     */
+    public void addTextFocusListener(FocusListener listenForText){
+        baseTxt.addFocusListener(listenForText);
+        heightTxt.addFocusListener(listenForText);
+    }
+    
+    /**
+     * Allows for messages to be past to be display message box
+     * @param errorMessage	the String message for the message box
+     */
+    public void displayErrorMessage(String errorMessage){
+        JOptionPane.showMessageDialog(this, errorMessage);
     }
 
+    /**
+     * This method checks the state of the Square Radio check button
+     * @return	true if Square radio is checked
+     */
     public boolean isSquare(){
     	return squareRadio.isSelected();
     }
     
+    /**
+     * Sets focus to the BaseText field
+     */
     public void setBaseFocus(){
     	baseTxt.selectAll();
     }
     
+    /**
+     * sets the default close operation
+     * @param closeOperation	the JFrame constant ie EXIT_ON_CLOSE
+     */
     public void setCloseOperation(int closeOperation){
     	this.setDefaultCloseOperation(closeOperation);
     }
