@@ -32,7 +32,8 @@ public class TaskView extends JFrame{
     
     
     public TaskView(){
-        initComponents(); 
+        initComponents();
+        this.setVisible(true);
     }
     
     private void initComponents(){
@@ -154,7 +155,11 @@ public class TaskView extends JFrame{
     public boolean isSquare(){
     	return squareRadio.isSelected();
     }
-
+    
+    public void setBaseFocus(){
+    	baseTxt.selectAll();
+    }
+    
     public void setCloseOperation(int closeOperation){
     	this.setDefaultCloseOperation(closeOperation);
     }

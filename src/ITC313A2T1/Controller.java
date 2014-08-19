@@ -77,6 +77,9 @@ public class Controller {
 	// used to display the map image
 	private JLabel theMap;
 	
+	/**
+	 * Default constructor
+	 */
 	public Controller(){
 		
 		// initialize the GUI
@@ -91,8 +94,6 @@ public class Controller {
 		// initialize the controller class for this GUI 
 		@SuppressWarnings("unused")
 		Controller theController = new Controller(theView, theModel);
-		
-
 	}
 	
 	/**
@@ -143,7 +144,7 @@ public class Controller {
 		
 		@SuppressWarnings("unused")
 		Controller theController = new Controller(theView, theModel);
-		theView.setVisible(true);
+//		theView.setVisible(true);
 	}
 
 	

@@ -4,10 +4,9 @@
  * @author 		Sean Matkovich
  * @studentID	11187033
  * 
- * This class implement task two on the assignment as detailed below
+ *  This class implement task two on the assignment as detailed below
  * 
- * My implementation use a model-view-controller pattern which reduce 
- * dependency between User interface and the model 
+ *  My implementation use a model-view-controller pattern to decouple the User interface and the model classes
  *  
  *  
  *  Task 2 (40 marks) (a square inherits a rectangle)
@@ -28,40 +27,16 @@
  *  set to zero when a rectangle object is first created. There should be a function to set the value 
  *  of these two sides. Another function should calculate the area (base * height) of the rectangle.
  *  
-Part 1 (rectangle):
-Write a JAVA source code, to declare the Rectangle class considering above mentioned specifications.
-Write, in JAVA, the complete definition of the Rectangle class based on your declaration
-Write a fragment of client code which creates a Rectangle object, sets its base and height value to 8 and 6 respectively and displays its area.
-Part 2 (square):
-Assume a Square class which would inherit the Rectangle defined in Part 1. An object of Square class will have both sides equal (i.e. base=height) which are set to zero at the time of the creation of the object. The same functions (area and setValues) of the Rectangle class should be used in Square class too.
-Write a JAVA source code declaration of the Square class inheriting the Rectangle class to behave according to the specification given above.
-Write a fragment of client code which creates a Square object, sets its side to 8 and displays its area.
-
-
-
- * Task 1 (60 marks) (plotting some POIs on a graph/map)
- * 
- * Part 1: 
- * Several types of point of interests (POI) such as - 
- * 		(1) Petrol station
- * 		(2) Taxi Stand
- * 		(3) ATM
- * 		(4) Hospital
- * 		(5) Shopping centre
- * are located in a city. Their locations (longitude and latitude) 
- * are provided in a text file (a file will be provided in the 
- * resource (a copy of this file is located in the root directory of this
- * project) section of the subject site, or you can create your own 
- * dummy text file according to the format you prefer). You must 
- * work with at least two type/kind of POI and at least 20 samples for 
- * each type (e.g. your text file should contain the location of 20 petrol 
- * stations in a city). You have to write a JAVA program that would get 
- * the locations of all the POIs from the file and plot them on a map (graph). 
- * Optional: Save the map/graph in a file if the user wants to.
- * 
- * Part 2: 
- * incorporate a mechanism to zoom in/out the map either by having 
- * buttons or with the help of the scroll button.
+ *	Part 1 (rectangle):
+ *	Write a JAVA source code, to declare the Rectangle class considering above mentioned specifications.
+ *	Write, in JAVA, the complete definition of the Rectangle class based on your declaration
+ *	Write a fragment of client code which creates a Rectangle object, sets its base and height value to 8 and 6 respectively and displays its area.
+ *
+ *	Part 2 (square):
+ *	Assume a Square class which would inherit the Rectangle defined in Part 1. An object of Square class will have both sides equal (i.e. base=height) 
+ *	which are set to zero at the time of the creation of the object. The same functions (area and setValues) of the Rectangle class should be used in 
+ *	Square class too. Write a JAVA source code declaration of the Square class inheriting the Rectangle class to behave according to the specification 
+ *	given above. Write a fragment of client code which creates a Square object, sets its side to 8 and displays its area.
  *
  */
 
@@ -84,17 +59,31 @@ import javax.swing.JTextField;
  * @author Seaboard
  */
 public class Controller {
-
+	// MODEL
     private Rectangle theModel;
+    // VIEW
     private TaskView theView;
     
+    
+    /**
+     * Default constructor
+     */
     public Controller(){
+    	// initialize the GUI
         TaskView theView = new TaskView();
+        
+        // initialize the model
         Rectangle theModel = new Rectangle();
         
+        
+//        Part One of the task specifies
+//        "Write a fragment of client code which creates a Rectangle object, 
+//        sets its base and height value to 8 and 6 respectively and displays its area."
+        
         // Setup object as Rectangle with dimensions
-        theModel.setBase(6);
+        theModel.setBase(8);
         theModel.setHeight(4);
+        
         
         // Setup up initial view contents
         theView.setBase(theModel.getBase());
@@ -106,10 +95,15 @@ public class Controller {
         @SuppressWarnings("unused")
 		Controller theController = new Controller(theView, theModel);
                 
-        theView.setVisible(true);
+//        theView.setVisible(true);
     }
     
-    public Controller(TaskView theView, Rectangle theModel){
+    /**
+     * Private constructor adds action listeners and set Class variables
+     * @param theView	the GUI
+     * @param theModel	the data object, in this case a Rectangle object
+     */
+    private Controller(TaskView theView, Rectangle theModel){
         this.theModel = theModel;
         this.theView = theView;
         
@@ -118,6 +112,9 @@ public class Controller {
         this.theView.addFocusListener(new TextListener());
     }
     
+    /**
+     * This private class provides the actions required whenever a the radio buttons are operated
+     */
     private class RadioListener implements ItemListener{
 
         @Override
@@ -126,25 +123,30 @@ public class Controller {
 				AbstractButton aButton = (AbstractButton) e.getSource();
          
 				if (aButton.getText() == "Square" && e.getStateChange() ==  ItemEvent.SELECTED) {
-				    theModel =  new Square(theView.getBaseValue());
+					theModel =  new Square(8);
+//					We can comment out the above line and use the below line to keep the existing object details
+//				    theModel =  new Square(theView.getBaseValue());
 				    theView.setShape(e);
 				    updateView();
 				}
 				else if (aButton.getText() == "Rectangle" && e.getStateChange() ==  ItemEvent.SELECTED) {
-				    theModel = new Rectangle(theView.getBaseValue(), theView.getHeightValue() );
+					theModel = new Rectangle(8, 6);
+//					We can comment out the above line and use the below line to keep the existing object details
+//					theModel = new Rectangle(theView.getBaseValue(), theView.getHeightValue() );
 				    theView.setShape(e);
 				    updateView();
 				}
 				updateArea();
 			}             
         	catch (ArithmeticException ex){
-                System.out.println(ex);
-                theView.displayErrorMessage(ex.getMessage());
-                requestFocusInWindow(theView.getBaseTxtField());
+                System.out.println(ex + "RadioListener");
             }
         }
     }
 
+    /**
+     * This private class provides the actions required whenever a the Calculate button is clicked
+     */
 	private class CalculateListener implements ActionListener{
 
         @Override
@@ -163,21 +165,28 @@ public class Controller {
             }
             catch (IllegalArgumentException ex) {
                 System.out.println(ex);
-                theView.displayErrorMessage("You have toenter positive numbers silly!");
+                theView.displayErrorMessage("You have to enter positive numbers silly!");
             }
             catch (ArithmeticException ex){
-                System.out.println(ex);
-                theView.displayErrorMessage(ex.getMessage());
-                requestFocusInWindow((JTextField) e.getSource());
+                System.out.println(ex + "CalculateListener");
+//                theView.displayErrorMessage(ex.getMessage());
+//                requestFocusInWindow(theView.getBaseTxtField());
+//                theView.setBaseFocus();
             }
         }
     }
     
-    private class TextListener implements FocusListener{
+    /**
+     * This private class provides the actions required whenever the JTextFields lose or gain focus
+     */
+	private class TextListener implements FocusListener{
         
         @Override
         public void focusGained(FocusEvent e) {
             if (e.isTemporary()) return;
+            
+            if (e.getSource() instanceof javax.swing.JButton)
+            	theView.setBaseFocus();
             // Selects all of the text in the current component
             ((JTextField)(e.getSource())).selectAll();
         }
@@ -186,7 +195,7 @@ public class Controller {
         public void focusLost(final FocusEvent e) {
             
             if (e.isTemporary()) return;
-            
+
             try {
                 // Before updating model and view the JTextField needs to be is checked
                 // isInteger uses regex pattern to check for conformity
@@ -219,8 +228,8 @@ public class Controller {
             }
             catch (ArithmeticException ex){
 //                if (theView.isSquare() || ((JTextField) e.getSource()).getName() == "heightTxt") return;
-            	System.out.println(ex);
-                theView.displayErrorMessage(ex.getMessage() + " FocusLost");
+            	System.out.println(ex + "FocusListener");
+                theView.displayErrorMessage(ex.getMessage());
                 requestFocusInWindow((JTextField) e.getSource());
             }
         }
@@ -234,8 +243,8 @@ public class Controller {
         Rectangle theModel = new Rectangle();
         
         // Setup object as Rectangle with dimensions
-        theModel.setBase(6);
-        theModel.setHeight(4);
+        theModel.setBase(8);
+        theModel.setHeight(6);
         
         // Setup up initial view contents
         theView.setBase(theModel.getBase());
@@ -248,6 +257,9 @@ public class Controller {
         theView.setVisible(true);
     }
     
+    /**
+     * Private method used to fill the GUI with object information 
+     */
     private void updateView(){
         theView.setBase(theModel.getBase());
         
@@ -259,10 +271,16 @@ public class Controller {
 //        theView.setArea(theModel.getArea());
     }
     
+    /**
+     * Private method that specifically sets the GUI with object area information
+     */
     private void updateArea(){
     	theView.setArea(theModel.getArea());
     }
     
+    /**
+     * Private method that collects data from the GUI and update the object model
+     */
     private void updateModel(){
     	if (!theView.isSquare())
     		theModel.setHeight(theView.getHeightValue());
@@ -270,14 +288,28 @@ public class Controller {
         theModel.setBase(theView.getBaseValue());
     }
     
+    /**
+     * Private method to test if string an acceptable double format
+     * @param str	string to be tested
+     * @return	true if the string matches the double format, all other cases return false
+     */
     private boolean isDouble(String str) {
     	return (str.matches("[0-9]+[.][0-9]+") || str.matches("[.][0-9]+"));
     }
 
+    /**
+     * Private method to test if string an acceptable integer format
+     * @param str	string to be tested
+     * @return	true if the string matches the integer format, all other cases return false
+     */
     private boolean isInteger(String str){
         return str.matches("[0-9]+");
     }
    
+    /**
+     * Private method for requesting focus of a JTextfiled in the GUI
+     * @param jf	is a JTextfield that focus is requested on
+     */
     private void requestFocusInWindow(JTextField jf){
         System.out.println("Give me focus Man! "+ jf.getText());
         jf.requestFocus();
