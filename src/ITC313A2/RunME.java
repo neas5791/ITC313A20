@@ -20,7 +20,7 @@ import javax.swing.*;
  *  
  */
 @SuppressWarnings("serial")
-public class SwitchBoard extends JFrame {
+public class RunME extends JFrame {
 	private JButton task1;
 	private JButton task2;
 	
@@ -28,7 +28,7 @@ public class SwitchBoard extends JFrame {
 	 * Constructor
 	 * Basic constructor builds GUI and framework
 	 */
-	public SwitchBoard(){
+	public RunME(){
 		this.setLayout(new GridLayout(2,1,5,5));
 		
 		this.setTitle("ITC313");
@@ -100,7 +100,7 @@ public class SwitchBoard extends JFrame {
 	 * @param args
 	 */
 	public static void main (String[] args){
-		SwitchBoard switchBoard = new SwitchBoard();
+		RunME switchBoard = new RunME();
 		switchBoard.setVisible(true);
 	}
 	
